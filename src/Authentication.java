@@ -18,6 +18,7 @@ public class Authentication extends javax.swing.JFrame {
      */
     public Authentication() {
         initComponents();
+         conn = JavaConnect.connect();
     }
 
     /**
