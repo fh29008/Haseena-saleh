@@ -1,3 +1,8 @@
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -10,10 +15,12 @@
  */
 public class MyPage extends javax.swing.JFrame {
 
-    /**
-     * Creates new form MyPage
-     */
+   Connection conn;
+   ResultSet rs;
+   PreparedStatement pst;
+   
     public MyPage() {
+        super("Home");
         initComponents();
         conn = JavaConnect.connect();
     }

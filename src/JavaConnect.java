@@ -1,34 +1,23 @@
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
+import javax.swing.*;
+
 
 public class JavaConnect {
 
-    /**
-     * Connect to a sample database
-     */
-    public static void connect() {
-        Connection conn = null;
+      Connection conn = null;
+      
+    public static Connection connect() {
+      
         try {
             // db parameters
-            String url = "C:\\Users\\Mohammad Zahid\\Documents\\NetBeansProjects\\BankingProject\\Bank.db";
+            Class.forName("org.sqlite.JDBC");
             // create a connection to the database
-            conn = DriverManager.getConnection(url);
-
-            System.out.println("Connection to SQLite has been established.");
-
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        } finally {
-            try {
-                if (conn != null) {
-                    conn.close();
-                }
-            } catch (SQLException ex) {
-                System.out.println(ex.getMessage());
-            }
+           Connection conn = DriverManager.getConnection("C:\\Users\\Mohammad Zahid\\Documents\\NetBeansProjects\\BankingProject\\bank.db");
+             return conn;
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,e.getMessage());
         }
-    
+        return null;
     }
 }

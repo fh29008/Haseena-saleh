@@ -1,21 +1,34 @@
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author Mohammad Zahid
  */
 public class Account extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Account
-     */
+    Connection conn;
+    ResultSet rs;
+    PreparedStatement pst;
+
     public Account() {
+        super("Creating Application");
         initComponents();
         conn = JavaConnect.connect();
+        getRandAccNum();
+        getRandRoutNum();
+        getRandPinNum();
     }
 
     /**
@@ -29,46 +42,47 @@ public class Account extends javax.swing.JFrame {
 
         jLabel3 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
-        jButton3 = new javax.swing.JButton();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
+        FName_TF = new javax.swing.JTextField();
+        RoutingTF = new javax.swing.JTextField();
+        ClearAll_BTN = new javax.swing.JButton();
+        Nationalty_TF = new javax.swing.JComboBox<>();
+        Back_BTN = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
-        jTextField11 = new javax.swing.JTextField();
-        jTextField9 = new javax.swing.JTextField();
-        jTextField12 = new javax.swing.JTextField();
+        Sec_QuesTF = new javax.swing.JTextField();
+        Sec_Ans_TF = new javax.swing.JTextField();
+        AnnIncome_TF = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        jRadioButton3 = new javax.swing.JRadioButton();
+        OtherRad_BTN = new javax.swing.JRadioButton();
         jLabel14 = new javax.swing.JLabel();
-        jTextField8 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
+        LName_TF = new javax.swing.JTextField();
+        PIN_TF = new javax.swing.JTextField();
         jLabel17 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        Emplyr_TF = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jTextField10 = new javax.swing.JTextField();
+        FMaleRdio_BTN = new javax.swing.JRadioButton();
+        SSN_TF = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jButton2 = new javax.swing.JButton();
+        MaleRad_BTN = new javax.swing.JRadioButton();
+        CreateAcc_BTN = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        HomeAdd_TF = new javax.swing.JTextField();
+        TotalBalnaceTF = new javax.swing.JTextField();
+        AccountTypeCB = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        AccNo_TF = new javax.swing.JTextField();
+        DOB_TF = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        setName("CreateAccount_Frame"); // NOI18N
 
         jLabel3.setBackground(new java.awt.Color(153, 153, 255));
         jLabel3.setFont(new java.awt.Font("Segoe Print", 1, 18)); // NOI18N
@@ -77,49 +91,49 @@ public class Account extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(null, "New Account Form", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri", 1, 18), new java.awt.Color(153, 51, 0)))); // NOI18N
 
-        jTextField6.setEnabled(false);
+        RoutingTF.setEnabled(false);
 
-        jButton3.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(204, 51, 0));
-        jButton3.setText("Clear All");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        ClearAll_BTN.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        ClearAll_BTN.setForeground(new java.awt.Color(204, 51, 0));
+        ClearAll_BTN.setText("Clear All");
+        ClearAll_BTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                ClearAll_BTNActionPerformed(evt);
             }
         });
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select", "US Citizen", "Permanent Resident", "Work Visa Holder" }));
-        jComboBox2.setName("NationalityCB"); // NOI18N
+        Nationalty_TF.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select", "US Citizen", "Permanent Resident", "Work Visa Holder" }));
+        Nationalty_TF.setName("NationalityCB"); // NOI18N
 
-        jButton1.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(204, 51, 0));
-        jButton1.setText("Go Back");
+        Back_BTN.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        Back_BTN.setForeground(new java.awt.Color(204, 51, 0));
+        Back_BTN.setText("Go Back");
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel7.setText("Last Name");
 
-        jTextField11.addActionListener(new java.awt.event.ActionListener() {
+        Sec_QuesTF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField11ActionPerformed(evt);
+                Sec_QuesTFActionPerformed(evt);
             }
         });
 
-        jTextField12.addActionListener(new java.awt.event.ActionListener() {
+        AnnIncome_TF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField12ActionPerformed(evt);
+                AnnIncome_TFActionPerformed(evt);
             }
         });
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel8.setText("Date of Birth");
 
-        jRadioButton3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jRadioButton3.setText("Other");
+        OtherRad_BTN.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        OtherRad_BTN.setText("Other");
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel14.setText("Employeer Name ");
 
-        jTextField4.setEnabled(false);
+        PIN_TF.setEnabled(false);
 
         jLabel17.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel17.setText("Security Question");
@@ -127,9 +141,9 @@ public class Account extends javax.swing.JFrame {
         jLabel12.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel12.setText("Gender");
 
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        Emplyr_TF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                Emplyr_TFActionPerformed(evt);
             }
         });
 
@@ -142,18 +156,18 @@ public class Account extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel6.setText("First Name");
 
-        jRadioButton2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jRadioButton2.setText("Female");
+        FMaleRdio_BTN.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        FMaleRdio_BTN.setText("Female");
 
         jLabel16.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel16.setText("Answer");
 
-        jRadioButton1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jRadioButton1.setText("Male");
+        MaleRad_BTN.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        MaleRad_BTN.setText("Male");
 
-        jButton2.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(204, 51, 0));
-        jButton2.setText("Create Account");
+        CreateAcc_BTN.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        CreateAcc_BTN.setForeground(new java.awt.Color(204, 51, 0));
+        CreateAcc_BTN.setText("Create Account");
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel5.setText("Account Type");
@@ -170,7 +184,7 @@ public class Account extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel2.setText("Routing No");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select", "Checking", "Saving", "Credit" }));
+        AccountTypeCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select", "Checking", "Saving", "Credit" }));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel4.setText("PIN");
@@ -178,7 +192,7 @@ public class Account extends javax.swing.JFrame {
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel13.setText("Nationality");
 
-        jTextField1.setEnabled(false);
+        AccNo_TF.setEnabled(false);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -213,24 +227,24 @@ public class Account extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField11)
-                            .addComponent(jTextField3)
+                            .addComponent(Sec_QuesTF)
+                            .addComponent(HomeAdd_TF)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jTextField7)
+                                .addComponent(TotalBalnaceTF)
                                 .addGap(161, 161, 161))
-                            .addComponent(jTextField2)
+                            .addComponent(Emplyr_TF)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(1, 1, 1)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addComponent(jComboBox1, 0, 76, Short.MAX_VALUE)
+                                                .addComponent(AccountTypeCB, 0, 76, Short.MAX_VALUE)
                                                 .addGap(12, 12, 12))
-                                            .addComponent(jTextField4))
+                                            .addComponent(PIN_TF))
                                         .addGap(194, 194, 194))
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jTextField6, javax.swing.GroupLayout.Alignment.TRAILING))))
+                                    .addComponent(AccNo_TF, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(RoutingTF, javax.swing.GroupLayout.Alignment.TRAILING))))
                         .addGap(106, 106, 106)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -256,31 +270,31 @@ public class Account extends javax.swing.JFrame {
                                 .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGap(46, 46, 46))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(Back_BTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(178, 178, 178)
-                        .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(CreateAcc_BTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(91, 91, 91)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE)
+                        .addComponent(ClearAll_BTN, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE)
                         .addGap(108, 108, 108))
-                    .addComponent(jTextField5)
-                    .addComponent(jTextField8)
-                    .addComponent(jTextField10)
+                    .addComponent(FName_TF)
+                    .addComponent(LName_TF)
+                    .addComponent(SSN_TF)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jRadioButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(MaleRad_BTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jRadioButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(FMaleRdio_BTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jRadioButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(OtherRad_BTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(2, 2, 2))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(Nationalty_TF, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(65, 65, 65))
-                    .addComponent(jTextField12)
-                    .addComponent(jTextField9)
-                    .addComponent(jDateChooser1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(AnnIncome_TF)
+                    .addComponent(Sec_Ans_TF)
+                    .addComponent(DOB_TF, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -290,62 +304,62 @@ public class Account extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jLabel6)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(AccNo_TF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(FName_TF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(22, 22, 22)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jLabel7)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(RoutingTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(LName_TF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(DOB_TF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(22, 22, 22)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
                             .addComponent(jLabel8)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(PIN_TF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(21, 21, 21)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(jLabel9)
-                    .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(SSN_TF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(AccountTypeCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(29, 29, 29)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
                     .addComponent(jLabel12)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton2)
-                    .addComponent(jRadioButton3))
+                    .addComponent(HomeAdd_TF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(MaleRad_BTN)
+                    .addComponent(FMaleRdio_BTN)
+                    .addComponent(OtherRad_BTN))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
                     .addComponent(jLabel13)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(TotalBalnaceTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Nationalty_TF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel14)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Emplyr_TF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel15)
-                    .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(AnnIncome_TF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Sec_Ans_TF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel16)
                     .addComponent(jLabel17)
-                    .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Sec_QuesTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(35, 35, 35)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
+                    .addComponent(Back_BTN)
+                    .addComponent(CreateAcc_BTN)
+                    .addComponent(ClearAll_BTN))
                 .addContainerGap())
         );
 
@@ -376,21 +390,21 @@ public class Account extends javax.swing.JFrame {
         setBounds(0, 0, 948, 559);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField11ActionPerformed
+    private void Sec_QuesTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Sec_QuesTFActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField11ActionPerformed
+    }//GEN-LAST:event_Sec_QuesTFActionPerformed
 
-    private void jTextField12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField12ActionPerformed
+    private void AnnIncome_TFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AnnIncome_TFActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField12ActionPerformed
+    }//GEN-LAST:event_AnnIncome_TFActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void ClearAll_BTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClearAll_BTNActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_ClearAll_BTNActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void Emplyr_TFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Emplyr_TFActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_Emplyr_TFActionPerformed
 
     /**
      * @param args the command line arguments
@@ -428,12 +442,27 @@ public class Account extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
+    private javax.swing.JTextField AccNo_TF;
+    private javax.swing.JComboBox<String> AccountTypeCB;
+    private javax.swing.JTextField AnnIncome_TF;
+    private javax.swing.JButton Back_BTN;
+    private javax.swing.JButton ClearAll_BTN;
+    private javax.swing.JButton CreateAcc_BTN;
+    private com.toedter.calendar.JDateChooser DOB_TF;
+    private javax.swing.JTextField Emplyr_TF;
+    private javax.swing.JRadioButton FMaleRdio_BTN;
+    private javax.swing.JTextField FName_TF;
+    private javax.swing.JTextField HomeAdd_TF;
+    private javax.swing.JTextField LName_TF;
+    private javax.swing.JRadioButton MaleRad_BTN;
+    private javax.swing.JComboBox<String> Nationalty_TF;
+    private javax.swing.JRadioButton OtherRad_BTN;
+    private javax.swing.JTextField PIN_TF;
+    private javax.swing.JTextField RoutingTF;
+    private javax.swing.JTextField SSN_TF;
+    private javax.swing.JTextField Sec_Ans_TF;
+    private javax.swing.JTextField Sec_QuesTF;
+    private javax.swing.JTextField TotalBalnaceTF;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -452,20 +481,53 @@ public class Account extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField11;
-    private javax.swing.JTextField jTextField12;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
     // End of variables declaration//GEN-END:variables
+
+    
+    /**
+     * This method generate Random Number for Account Numbers.
+     */
+    public void getRandAccNum() {
+        Random ra = new Random();
+        AccNo_TF.setText(""+ ra.nextInt(10000+1));
+        
+    }
+
+    /**
+     * This method generate Random Number for Routing Numbers.
+     */
+    public void getRandRoutNum() {
+        Random ra = new Random();
+        RoutingTF.setText(""+ ra.nextInt(1000+1));
+    }
+
+    /**
+     * This method generate Random Number for Pin code.
+     */
+    
+    public void getRandPinNum() {
+        Random ra = new Random();
+        PIN_TF.setText(""+ ra.nextInt(1000+1));
+    }
+    
+    /**
+     * This method communicates with SQL Database and take
+     * values from Java Interface tax field and store it
+     * into the Database.
+     */
+    public void getBalance(){
+        try {
+            String sql = ("insert into Balnaces(Name,Acc_No,Routing_No,Balance)values(?,?,?,?)");
+            pst = conn.prepareStatement(sql);
+            pst.setString(1,FName_TF.getText());
+            pst.setString(2,LName_TF.getText());
+            pst.setString(3, AccNo_TF.getText());
+            pst.setString(4,RoutingTF.getText());
+            pst.setString(5,TotalBalnaceTF.getText());
+            pst.executeQuery();
+        } catch (SQLException ex) {
+            Logger.getLogger(Account.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
 }
