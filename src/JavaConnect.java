@@ -1,11 +1,14 @@
 
-import java.sql.*;
-import javax.swing.*;
-
+import java.sql.Connection;
+import java.sql.DatabaseMetaData;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
 
 public class JavaConnect {
 
-      Connection conn = null;
+  
+  Connection conn = null;
       
     public static Connection connect() {
       
@@ -21,3 +24,6 @@ public class JavaConnect {
         return null;
     }
 }
+
+    
+

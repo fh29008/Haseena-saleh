@@ -2,6 +2,8 @@
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -13,16 +15,25 @@ import java.sql.ResultSet;
  *
  * @author Mohammad Zahid
  */
-public class Loading extends javax.swing.JFrame {
+public class Loading extends javax.swing.JFrame implements Runnable {
 
    Connection conn;
    ResultSet rs;
    PreparedStatement pst;
    
+   int s = 0;
+   Thread th ;
+   
     public Loading() {
         super("Loading");
         initComponents();
-         conn = JavaConnect.connect();
+        conn = JavaConnect.connect();
+        th = new Thread((Runnable)this);
+    }
+    
+    public void setUpLoading(){
+        setVisible(false);
+        th.start();
     }
 
     /**
@@ -167,4 +178,26 @@ public class Loading extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JProgressBar jProgressBar1;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void run() {
+        for (int i = 0; i < 200; i++) {
+            try {
+                s=s+1;
+                int m = jProgressBar1.getMaximum();
+                int v = jProgressBar1.getValue();
+                if(v<m)
+                    jProgressBar1.setValue(jProgressBar1.getValue()+1);
+                else
+                    i =201;
+                setVisible(false);
+                MyPage myPage = new MyPage();
+                setVisible(true);
+                Thread.sleep(50);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Loading.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
+    }
 }

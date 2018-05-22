@@ -6,6 +6,8 @@ import java.sql.SQLException;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -40,21 +42,21 @@ public class Account extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        GenBTNGroup = new javax.swing.ButtonGroup();
         jLabel3 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        FName_TF = new javax.swing.JTextField();
+        FirstName_TF = new javax.swing.JTextField();
         RoutingTF = new javax.swing.JTextField();
         ClearAll_BTN = new javax.swing.JButton();
-        Nationalty_TF = new javax.swing.JComboBox<>();
+        NationaltyCBX = new javax.swing.JComboBox<>();
         Back_BTN = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
-        Sec_QuesTF = new javax.swing.JTextField();
         Sec_Ans_TF = new javax.swing.JTextField();
         AnnIncome_TF = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         OtherRad_BTN = new javax.swing.JRadioButton();
         jLabel14 = new javax.swing.JLabel();
-        LName_TF = new javax.swing.JTextField();
+        LastName_TF = new javax.swing.JTextField();
         PIN_TF = new javax.swing.JTextField();
         jLabel17 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
@@ -62,7 +64,7 @@ public class Account extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        FMaleRdio_BTN = new javax.swing.JRadioButton();
+        FMaleRad_BTN = new javax.swing.JRadioButton();
         SSN_TF = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
         MaleRad_BTN = new javax.swing.JRadioButton();
@@ -79,6 +81,7 @@ public class Account extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         AccNo_TF = new javax.swing.JTextField();
         DOB_TF = new com.toedter.calendar.JDateChooser();
+        SecQCmb = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
@@ -102,8 +105,8 @@ public class Account extends javax.swing.JFrame {
             }
         });
 
-        Nationalty_TF.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select", "US Citizen", "Permanent Resident", "Work Visa Holder" }));
-        Nationalty_TF.setName("NationalityCB"); // NOI18N
+        NationaltyCBX.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select", "US Citizen", "Permanent Resident", "Work Visa Holder" }));
+        NationaltyCBX.setName("NationalityCB"); // NOI18N
 
         Back_BTN.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         Back_BTN.setForeground(new java.awt.Color(204, 51, 0));
@@ -111,12 +114,6 @@ public class Account extends javax.swing.JFrame {
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel7.setText("Last Name");
-
-        Sec_QuesTF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Sec_QuesTFActionPerformed(evt);
-            }
-        });
 
         AnnIncome_TF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -127,6 +124,7 @@ public class Account extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel8.setText("Date of Birth");
 
+        GenBTNGroup.add(OtherRad_BTN);
         OtherRad_BTN.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         OtherRad_BTN.setText("Other");
 
@@ -151,23 +149,30 @@ public class Account extends javax.swing.JFrame {
         jLabel1.setText("Account No");
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel10.setText("Residency Address");
+        jLabel10.setText("Home Address");
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel6.setText("First Name");
 
-        FMaleRdio_BTN.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        FMaleRdio_BTN.setText("Female");
+        GenBTNGroup.add(FMaleRad_BTN);
+        FMaleRad_BTN.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        FMaleRad_BTN.setText("Female");
 
         jLabel16.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel16.setText("Answer");
 
+        GenBTNGroup.add(MaleRad_BTN);
         MaleRad_BTN.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         MaleRad_BTN.setText("Male");
 
         CreateAcc_BTN.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         CreateAcc_BTN.setForeground(new java.awt.Color(204, 51, 0));
         CreateAcc_BTN.setText("Create Account");
+        CreateAcc_BTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CreateAcc_BTNActionPerformed(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel5.setText("Account Type");
@@ -193,6 +198,8 @@ public class Account extends javax.swing.JFrame {
         jLabel13.setText("Nationality");
 
         AccNo_TF.setEnabled(false);
+
+        SecQCmb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "What is your mother's maiden name?", "In what city were you born?", "What was the make of your first car?", "What is the name of your favorite pet?" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -227,7 +234,6 @@ public class Account extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Sec_QuesTF)
                             .addComponent(HomeAdd_TF)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(TotalBalnaceTF)
@@ -239,16 +245,17 @@ public class Account extends javax.swing.JFrame {
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addComponent(AccountTypeCB, 0, 76, Short.MAX_VALUE)
+                                                .addComponent(AccountTypeCB, 0, 80, Short.MAX_VALUE)
                                                 .addGap(12, 12, 12))
                                             .addComponent(PIN_TF))
                                         .addGap(194, 194, 194))
                                     .addComponent(AccNo_TF, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(RoutingTF, javax.swing.GroupLayout.Alignment.TRAILING))))
+                                    .addComponent(RoutingTF, javax.swing.GroupLayout.Alignment.TRAILING)))
+                            .addComponent(SecQCmb, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(106, 106, 106)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE)
+                                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE)
                                 .addGap(29, 29, 29))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -277,20 +284,20 @@ public class Account extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(ClearAll_BTN, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE)
+                        .addComponent(ClearAll_BTN, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE)
                         .addGap(108, 108, 108))
-                    .addComponent(FName_TF)
-                    .addComponent(LName_TF)
+                    .addComponent(FirstName_TF)
+                    .addComponent(LastName_TF)
                     .addComponent(SSN_TF)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(MaleRad_BTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(FMaleRdio_BTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(FMaleRad_BTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(OtherRad_BTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(2, 2, 2))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(Nationalty_TF, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(NationaltyCBX, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(65, 65, 65))
                     .addComponent(AnnIncome_TF)
                     .addComponent(Sec_Ans_TF)
@@ -305,13 +312,13 @@ public class Account extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addComponent(jLabel6)
                     .addComponent(AccNo_TF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(FName_TF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(FirstName_TF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(22, 22, 22)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jLabel7)
                     .addComponent(RoutingTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(LName_TF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(LastName_TF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
@@ -335,14 +342,14 @@ public class Account extends javax.swing.JFrame {
                     .addComponent(jLabel12)
                     .addComponent(HomeAdd_TF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(MaleRad_BTN)
-                    .addComponent(FMaleRdio_BTN)
+                    .addComponent(FMaleRad_BTN)
                     .addComponent(OtherRad_BTN))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
                     .addComponent(jLabel13)
                     .addComponent(TotalBalnaceTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Nationalty_TF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(NationaltyCBX, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel14)
@@ -354,7 +361,7 @@ public class Account extends javax.swing.JFrame {
                     .addComponent(Sec_Ans_TF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel16)
                     .addComponent(jLabel17)
-                    .addComponent(Sec_QuesTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(SecQCmb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(35, 35, 35)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Back_BTN)
@@ -390,21 +397,56 @@ public class Account extends javax.swing.JFrame {
         setBounds(0, 0, 948, 559);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void Sec_QuesTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Sec_QuesTFActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Sec_QuesTFActionPerformed
-
     private void AnnIncome_TFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AnnIncome_TFActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_AnnIncome_TFActionPerformed
 
     private void ClearAll_BTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClearAll_BTNActionPerformed
-        // TODO add your handling code here:
+       
     }//GEN-LAST:event_ClearAll_BTNActionPerformed
 
     private void Emplyr_TFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Emplyr_TFActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_Emplyr_TFActionPerformed
+
+    /**
+     * Create button which renders the values to the Database
+     *
+     * @param evt
+     */
+    private void CreateAcc_BTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateAcc_BTNActionPerformed
+        try {
+            String sql = "insert into Account(Acc_No,Routing_No,PIN,FirstName,LastName,DOB,"
+                    + "Acc_Type,Nationality,Gender,Home_Address,SSN,Sec_Quest,Sec_Ans,Balance,AnnIncome,EmployerName) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            pst = conn.prepareStatement(sql);
+            pst.setString(1, AccNo_TF.getText());
+            pst.setString(2, RoutingTF.getText());
+            pst.setString(3, PIN_TF.getText());
+            pst.setString(4, FirstName_TF.getText());
+            pst.setString(5, LastName_TF.getText());
+            pst.setString(6, ((JTextField) DOB_TF.getDateEditor().getUiComponent()).getText());
+            pst.setString(7, AccountTypeCB.getSelectedItem().toString());
+            pst.setString(8, NationaltyCBX.getSelectedItem().toString());
+            MaleRad_BTN.setActionCommand("Male");
+            FMaleRad_BTN.setActionCommand("Female");
+            OtherRad_BTN.setActionCommand("other");
+            pst.setString(9, GenBTNGroup.getSelection().getActionCommand());
+            pst.setString(10, HomeAdd_TF.getText());
+            pst.setString(11, SSN_TF.getText());
+            pst.setString(12, SecQCmb.getSelectedItem().toString());
+            pst.setString(13, Sec_Ans_TF.getText());
+            pst.setString(14, TotalBalnaceTF.getText());
+            pst.setString(15, AnnIncome_TF.getText());
+            pst.setString(15, Emplyr_TF.getText());
+            pst.executeQuery();
+            JOptionPane.showMessageDialog(null, "Congrats! /n Your Account has been created successfully.");
+            pst.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Account.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_CreateAcc_BTNActionPerformed
 
     /**
      * @param args the command line arguments
@@ -450,18 +492,19 @@ public class Account extends javax.swing.JFrame {
     private javax.swing.JButton CreateAcc_BTN;
     private com.toedter.calendar.JDateChooser DOB_TF;
     private javax.swing.JTextField Emplyr_TF;
-    private javax.swing.JRadioButton FMaleRdio_BTN;
-    private javax.swing.JTextField FName_TF;
+    private javax.swing.JRadioButton FMaleRad_BTN;
+    private javax.swing.JTextField FirstName_TF;
+    private javax.swing.ButtonGroup GenBTNGroup;
     private javax.swing.JTextField HomeAdd_TF;
-    private javax.swing.JTextField LName_TF;
+    private javax.swing.JTextField LastName_TF;
     private javax.swing.JRadioButton MaleRad_BTN;
-    private javax.swing.JComboBox<String> Nationalty_TF;
+    private javax.swing.JComboBox<String> NationaltyCBX;
     private javax.swing.JRadioButton OtherRad_BTN;
     private javax.swing.JTextField PIN_TF;
     private javax.swing.JTextField RoutingTF;
     private javax.swing.JTextField SSN_TF;
+    private javax.swing.JComboBox<String> SecQCmb;
     private javax.swing.JTextField Sec_Ans_TF;
-    private javax.swing.JTextField Sec_QuesTF;
     private javax.swing.JTextField TotalBalnaceTF;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -483,14 +526,13 @@ public class Account extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 
-    
     /**
      * This method generate Random Number for Account Numbers.
      */
     public void getRandAccNum() {
         Random ra = new Random();
-        AccNo_TF.setText(""+ ra.nextInt(10000+1));
-        
+        AccNo_TF.setText("" + ra.nextInt(10000 + 1));
+
     }
 
     /**
@@ -498,36 +540,34 @@ public class Account extends javax.swing.JFrame {
      */
     public void getRandRoutNum() {
         Random ra = new Random();
-        RoutingTF.setText(""+ ra.nextInt(1000+1));
+        RoutingTF.setText("" + ra.nextInt(1000 + 1));
     }
 
     /**
      * This method generate Random Number for Pin code.
      */
-    
     public void getRandPinNum() {
         Random ra = new Random();
-        PIN_TF.setText(""+ ra.nextInt(1000+1));
+        PIN_TF.setText("" + ra.nextInt(1000 + 1));
     }
-    
+
     /**
-     * This method communicates with SQL Database and take
-     * values from Java Interface tax field and store it
-     * into the Database.
+     * This method communicates with SQL Database and take values from Java
+     * Interface tax field and store it into the Database.
      */
-    public void getBalance(){
+    public void getBalance() {
         try {
-            String sql = ("insert into Balnaces(Name,Acc_No,Routing_No,Balance)values(?,?,?,?)");
+            String sql = ("insert into Balnaces(FirstName,LastName,Acc_No,Routing_No,Balance)values(?,?,?,?,?)");
             pst = conn.prepareStatement(sql);
-            pst.setString(1,FName_TF.getText());
-            pst.setString(2,LName_TF.getText());
+            pst.setString(1, FirstName_TF.getText());
+            pst.setString(2, LastName_TF.getText());
             pst.setString(3, AccNo_TF.getText());
-            pst.setString(4,RoutingTF.getText());
-            pst.setString(5,TotalBalnaceTF.getText());
+            pst.setString(4, RoutingTF.getText());
+            pst.setString(5, TotalBalnaceTF.getText());
             pst.executeQuery();
         } catch (SQLException ex) {
             Logger.getLogger(Account.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }
 }

@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+  <NonVisualComponents>
+    <Component class="javax.swing.ButtonGroup" name="GenBTNGroup">
+    </Component>
+  </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -129,7 +133,6 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="Sec_QuesTF" max="32767" attributes="0"/>
                               <Component id="HomeAdd_TF" alignment="0" max="32767" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="TotalBalnaceTF" max="32767" attributes="0"/>
@@ -142,7 +145,7 @@
                                       <Group type="102" alignment="0" attributes="0">
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Group type="102" alignment="0" attributes="0">
-                                                  <Component id="AccountTypeCB" pref="76" max="32767" attributes="0"/>
+                                                  <Component id="AccountTypeCB" pref="80" max="32767" attributes="0"/>
                                                   <EmptySpace min="12" pref="12" max="-2" attributes="0"/>
                                               </Group>
                                               <Component id="PIN_TF" max="32767" attributes="0"/>
@@ -153,11 +156,12 @@
                                       <Component id="RoutingTF" alignment="1" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
+                              <Component id="SecQCmb" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="106" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jLabel6" pref="71" max="32767" attributes="0"/>
+                                  <Component id="jLabel6" pref="76" max="32767" attributes="0"/>
                                   <EmptySpace min="29" pref="29" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
@@ -197,22 +201,22 @@
                   <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="ClearAll_BTN" pref="94" max="32767" attributes="0"/>
+                          <Component id="ClearAll_BTN" pref="103" max="32767" attributes="0"/>
                           <EmptySpace min="108" pref="108" max="-2" attributes="0"/>
                       </Group>
-                      <Component id="FName_TF" max="32767" attributes="0"/>
-                      <Component id="LName_TF" max="32767" attributes="0"/>
+                      <Component id="FirstName_TF" max="32767" attributes="0"/>
+                      <Component id="LastName_TF" max="32767" attributes="0"/>
                       <Component id="SSN_TF" alignment="0" max="32767" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="MaleRad_BTN" max="32767" attributes="0"/>
                           <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
-                          <Component id="FMaleRdio_BTN" max="32767" attributes="0"/>
+                          <Component id="FMaleRad_BTN" max="32767" attributes="0"/>
                           <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
                           <Component id="OtherRad_BTN" max="32767" attributes="0"/>
                           <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="Nationalty_TF" max="32767" attributes="0"/>
+                          <Component id="NationaltyCBX" max="32767" attributes="0"/>
                           <EmptySpace min="65" pref="65" max="-2" attributes="0"/>
                       </Group>
                       <Component id="AnnIncome_TF" alignment="0" max="32767" attributes="0"/>
@@ -231,14 +235,14 @@
                       <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="AccNo_TF" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="FName_TF" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="FirstName_TF" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="RoutingTF" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="LName_TF" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="LastName_TF" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
@@ -268,7 +272,7 @@
                       <Component id="jLabel12" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="HomeAdd_TF" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="MaleRad_BTN" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="FMaleRdio_BTN" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="FMaleRad_BTN" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="OtherRad_BTN" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
@@ -276,7 +280,7 @@
                       <Component id="jLabel11" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel13" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="TotalBalnaceTF" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="Nationalty_TF" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="NationaltyCBX" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -290,7 +294,7 @@
                       <Component id="Sec_Ans_TF" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel16" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel17" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="Sec_QuesTF" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="SecQCmb" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -304,7 +308,7 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JTextField" name="FName_TF">
+        <Component class="javax.swing.JTextField" name="FirstName_TF">
         </Component>
         <Component class="javax.swing.JTextField" name="RoutingTF">
           <Properties>
@@ -325,7 +329,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ClearAll_BTNActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JComboBox" name="Nationalty_TF">
+        <Component class="javax.swing.JComboBox" name="NationaltyCBX">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="4">
@@ -360,11 +364,6 @@
             <Property name="text" type="java.lang.String" value="Last Name"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="Sec_QuesTF">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Sec_QuesTFActionPerformed"/>
-          </Events>
-        </Component>
         <Component class="javax.swing.JTextField" name="Sec_Ans_TF">
         </Component>
         <Component class="javax.swing.JTextField" name="AnnIncome_TF">
@@ -382,6 +381,9 @@
         </Component>
         <Component class="javax.swing.JRadioButton" name="OtherRad_BTN">
           <Properties>
+            <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+              <ComponentRef name="GenBTNGroup"/>
+            </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="12" style="1"/>
             </Property>
@@ -396,7 +398,7 @@
             <Property name="text" type="java.lang.String" value="Employeer Name "/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="LName_TF">
+        <Component class="javax.swing.JTextField" name="LastName_TF">
         </Component>
         <Component class="javax.swing.JTextField" name="PIN_TF">
           <Properties>
@@ -437,7 +439,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="12" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Residency Address"/>
+            <Property name="text" type="java.lang.String" value="Home Address"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel6">
@@ -448,8 +450,11 @@
             <Property name="text" type="java.lang.String" value="First Name"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JRadioButton" name="FMaleRdio_BTN">
+        <Component class="javax.swing.JRadioButton" name="FMaleRad_BTN">
           <Properties>
+            <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+              <ComponentRef name="GenBTNGroup"/>
+            </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="12" style="1"/>
             </Property>
@@ -468,6 +473,9 @@
         </Component>
         <Component class="javax.swing.JRadioButton" name="MaleRad_BTN">
           <Properties>
+            <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+              <ComponentRef name="GenBTNGroup"/>
+            </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="12" style="1"/>
             </Property>
@@ -484,6 +492,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Create Account"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CreateAcc_BTNActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel5">
           <Properties>
@@ -566,6 +577,21 @@
           </Properties>
         </Component>
         <Component class="com.toedter.calendar.JDateChooser" name="DOB_TF">
+        </Component>
+        <Component class="javax.swing.JComboBox" name="SecQCmb">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="4">
+                <StringItem index="0" value="What is your mother&apos;s maiden name?"/>
+                <StringItem index="1" value="In what city were you born?"/>
+                <StringItem index="2" value="What was the make of your first car?"/>
+                <StringItem index="3" value="What is the name of your favorite pet?"/>
+              </StringArray>
+            </Property>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+          </AuxValues>
         </Component>
       </SubComponents>
     </Container>
