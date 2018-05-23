@@ -18,8 +18,9 @@ public static Connection connect(){
        
     } catch (Exception ex) {
         JOptionPane.showMessageDialog(null, ex);
-        return null;
+       
     }
+     return null;
 }
 
 

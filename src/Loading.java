@@ -4,17 +4,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- *
- * @author Mohammad Zahid
- */
 public class Loading extends javax.swing.JFrame implements Runnable {
 
    Connection conn;
@@ -27,7 +18,6 @@ public class Loading extends javax.swing.JFrame implements Runnable {
     public Loading() {
         super("Loading");
         initComponents();
-        conn = JavaConnect.connect();
         th = new Thread((Runnable)this);
     }
     
@@ -54,7 +44,7 @@ public class Loading extends javax.swing.JFrame implements Runnable {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(153, 204, 255));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 102));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Loading Page", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14), new java.awt.Color(0, 0, 153)))); // NOI18N
 
         jLabel3.setBackground(new java.awt.Color(153, 153, 255));
@@ -181,21 +171,22 @@ public class Loading extends javax.swing.JFrame implements Runnable {
 
     @Override
     public void run() {
-        for (int i = 0; i < 200; i++) {
+        for (int i = 0; i <= 200; i++) {
             try {
                 s=s+1;
                 int m = jProgressBar1.getMaximum();
                 int v = jProgressBar1.getValue();
                 if(v<m)
                     jProgressBar1.setValue(jProgressBar1.getValue()+1);
-                else
+                else {
                     i =201;
                 setVisible(false);
-                MyPage myPage = new MyPage();
-                setVisible(true);
+                MyPage ob = new MyPage();
+                 ob.setVisible(true);
+                }
                 Thread.sleep(50);
-            } catch (InterruptedException ex) {
-                Logger.getLogger(Loading.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, ex);
             }
         }
         

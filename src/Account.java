@@ -1,6 +1,8 @@
 
 import java.sql.*;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
@@ -106,6 +108,11 @@ public class Account extends javax.swing.JFrame {
         Back_BTN.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         Back_BTN.setForeground(new java.awt.Color(204, 51, 0));
         Back_BTN.setText("Go Back");
+        Back_BTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Back_BTNActionPerformed(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel7.setText("Last Name");
@@ -405,19 +412,18 @@ public class Account extends javax.swing.JFrame {
         Sec_Ans_TF.setText("");
         TotalBalnaceTF.setText("");
         AnnIncome_TF.setText("");
-        Emplyr_TF.setText(""); 
+        Emplyr_TF.setText("");
         MaleRad_BTN.setSelected(false);
         FMaleRad_BTN.setSelected(false);
         OtherRad_BTN.setSelected(false);
         AccountTypeCB.setSelectedIndex(0);
         NationaltyCBX.setSelectedIndex(0);
-        ((JTextField)DOB_TF.getDateEditor().getUiComponent()).setText("");
+        ((JTextField) DOB_TF.getDateEditor().getUiComponent()).setText("");
 
-        
         getRandAccNum();
         getRandRoutNum();
         getRandPinNum();
-        
+
     }//GEN-LAST:event_ClearAll_BTNActionPerformed
 
     private void Emplyr_TFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Emplyr_TFActionPerformed
@@ -454,26 +460,34 @@ public class Account extends javax.swing.JFrame {
             pst.setString(15, AnnIncome_TF.getText());
             pst.setString(16, Emplyr_TF.getText());
             pst.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Congrats! \nYour Account has been created successfully.");
+            JOptionPane.showMessageDialog(null, "Congrats"+FirstName_TF.getText()+" \nYour Account has been created successfully.");
+            getBalance();
             pst.close();
-            rs.close();
 
         } catch (Exception ex) {
-              JOptionPane.showMessageDialog(null,ex);
+            JOptionPane.showMessageDialog(null, ex);
+        }finally{
+            try {
+                pst.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(Account.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
 
     }//GEN-LAST:event_CreateAcc_BTNActionPerformed
+
+    private void Back_BTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Back_BTNActionPerformed
+        setVisible(false);
+        Authentication ob = new Authentication();
+        ob.setVisible(true);
+    }//GEN-LAST:event_Back_BTNActionPerformed
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
+    
+/*        try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
@@ -489,7 +503,7 @@ public class Account extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Account.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
+        //</editor-fold> */
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -581,8 +595,8 @@ public class Account extends javax.swing.JFrame {
             pst.setString(4, RoutingTF.getText());
             pst.setString(5, TotalBalnaceTF.getText());
             pst.executeQuery();
-      } catch (Exception ex) {
-              JOptionPane.showMessageDialog(null,ex);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex);
         }
 
     }
