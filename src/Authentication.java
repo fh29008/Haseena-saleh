@@ -165,7 +165,7 @@ public class Authentication extends javax.swing.JFrame {
            
            pst = conn.prepareStatement(sql);
            pst.setString(1, jTextField1.getText());
-           pst.setString(2, jPasswordField1.getSelectedText());
+           pst.setString(2, jPasswordField1.getText());
            if(rs.next()){
                setVisible(false);
                Loading load = new Loading();
@@ -176,8 +176,9 @@ public class Authentication extends javax.swing.JFrame {
            }else{
                JOptionPane.showMessageDialog(null, "Incorrect Credential");
            }
-       } catch (SQLException ex) {
-           Logger.getLogger(Authentication.class.getName()).log(Level.SEVERE, null, ex);
+       } catch (Exception ex) {
+             JOptionPane.showMessageDialog(null, ex);
+          
        }
     }//GEN-LAST:event_jButton1ActionPerformed
 

@@ -1,29 +1,34 @@
 
-import java.sql.Connection;
-import java.sql.DatabaseMetaData;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class JavaConnect {
 
-  
-  Connection conn = null;
-      
-    public static Connection connect() {
-      
-        try {
-            // db parameters
-            Class.forName("org.sqlite.JDBC");
-            // create a connection to the database
-           Connection conn = DriverManager.getConnection("C:\\Users\\Mohammad Zahid\\Documents\\NetBeansProjects\\BankingProject\\bank.db");
-             return conn;
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null,e.getMessage());
-        }
+Connection conn = null;
+
+public static Connection connect(){
+    
+    try {
+        Class.forName("org.sqlite.JDBC");
+        Connection conn = DriverManager.getConnection("jdbc:sqlite:C:\\Users\\Mohammad Zahid\\Documents\\NetBeansProjects\\BankingProject\\Bank.db");
+        return conn;
+        
+       
+    } catch (Exception ex) {
+        JOptionPane.showMessageDialog(null, ex);
         return null;
     }
 }
+
+
+
+  
+}
+      
+   
+    
 
     
 
