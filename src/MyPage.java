@@ -656,7 +656,7 @@ pst.close();
             int sum = Integer.parseInt(a1)- Integer.parseInt(a2);
             String sum1 = String.valueOf(sum);
             jTextField13.setText(sum1);
-            
+          
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
         }
