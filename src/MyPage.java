@@ -671,8 +671,9 @@ pst.close();
         try{
             String value1 = jTextField13.getText();
             String value2 = jTextField2.getText();
-            String sql = "Update Balance set Balance" + value2 + " where Name "
+            String sql = "Update Balance set Balance" + value2 + " where FirstName="
                     + value1 + "'";
+            pst = conn.prepareStatement(sql);
             pst.execute();
             JOptionPane.showMessageDialog(null, "Sucessfully Deposited");
             jTextField13.setText("");
