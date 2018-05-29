@@ -456,6 +456,11 @@ public class MyPage extends javax.swing.JFrame {
         });
 
         jButton4.setText("Deposit");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -661,6 +666,28 @@ pst.close();
             JOptionPane.showMessageDialog(null, e);
         }
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        try{
+            String value1 = jTextField13.getText();
+            String value2 = jTextField2.getText();
+            String sql = "Update Balance set Balance" + value2 + " where Name "
+                    + value1 + "'";
+            pst.execute();
+            JOptionPane.showMessageDialog(null, "Sucessfully Deposited");
+            jTextField13.setText("");
+            jTextField2.setText("");
+            jTextField3.setText("");
+            jTextField6.setText("");
+            jTextField10.setText("");
+            jTextField11.setText("");
+            jTextField12.setText("");
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, e);
+        }
+      
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton4ActionPerformed
        
     /**
      * @param args the command line arguments
